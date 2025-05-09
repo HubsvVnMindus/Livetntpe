@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HUNG-TOOL HACK FREE FIRE 2025</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.9/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white font-mono">
+  <div id="root"></div>
+  <script type="text/babel">
+    const App = () => {
+      const [userId, setUserId] = React.useState('');
+      const [userData, setUserData] = React.useState({});
+      const [view, setView] = React.useState('selectId');
+      const [newId, setNewId] = React.useState('');
+      const [typingText, setTypingText] = React.useState('');
+      const [isTyping, setIsTyping] = React.useState(false);
+      const [hackStatus, setHackStatus] = React.useState('');
+      const [countdown, setCountdown] = React.useState(20);
+      const [elapsedSeconds, setElapsedSeconds] = React.useState(0);
+      const [isHacking, setIsHacking] = React.useState(false);
+
+      // Load user data from localStorage
+      React.useEffect(() => {
+        const storedData = localStorage.getItem('user_data');
+        if (storedData) {
+          setUserData(JSON.parse(storedData));
+        }
+      }, []);
+
+      // Save user data to localStorage
+      const saveUserData = (data) => {
+        setUserData(data);
+        localStorage.setItem('user_data', JSON.stringify(data));
+      };
+
+      // Typing effect
+      const printTyping = (text, callback) => {
+        setIsTyping(true);
+        setTypingText('');
+        let i = 0;
+        const interval = setInterval(() => {
+          if (i < text.length) {
+            setTypingText(prev => prev + text[i]);
+            i++;
+          } else {
+            clearInterval(interval);
+            setIsTyping(false);
+            if (callback) callback();
+          }
+        }, 30);
+      };
+
+      // Validate ID
+      const isValidId = (id) => /^\d{8,11}$/.test(id);
+
+      // Handle new ID submission
+      const handleNewId = () => {
+        if (isValidId(newId)) {
+          const updatedData = { ...userData, [newId]: { total_diamonds: 0 } };
+          saveUserData(updatedData);
+          setUserId(newId);
+          setView('menu');
+          setNewId('');
+        } else {
+          alert('ID không hợp lệ! ID Free Fire phải là 8-11 chữ số.');
+        }
+      };
+
+      // Hack diamonds simulation
+      const hackDiamonds = () => {
+        setView('hackDiamonds');
+        setHackStatus('Đang kết nối với server hack kim cương Free Fire...');
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+          progress += 1;
+          if (progress >= 30) {
+            clearInterval(progressInterval);
+            setHackStatus('Nhấn "Dừng" để quay lại menu.');
+            startHacking();
+          }
+        }, 500);
+      };
+
+      const startHacking = () => {
+        setIsHacking(true);
+        let localCountdown = 20;
+        let localElapsed = elapsedSeconds;
+        const hackInterval = setInterval(() => {
+          if (localCountdown > 0) {
+            setCountdown(localCountdown);
+            localCountdown -= 1;
+            localElapsed += 1;
+            setElapsedSeconds(localElapsed);
+          } else {
+            const diamonds = Math.floor(Math.random() * 3);
+            const updatedData = { ...userData };
+            updatedData[userId].total_diamonds += diamonds;
+            saveUserData(updatedData);
+            setHackStatus(`ID ${userId} nhận được ${diamonds} 💎 kim cương | Tổng nhận: ${updatedData[userId].total_diamonds} 💎`);
+            localCountdown = 20;
+            setCountdown(20);
+          }
+        }, 1000);
+
+        // Cleanup on component unmount or stop
+        return () => clearInterval(hackInterval);
+      };
+
+      const stopHacking = () => {
+        setIsHacking(false);
+        setHackStatus(`Đã dừng hack kim cương. Tổng kim cương nhận được: ${userData[userId].total_diamonds} 💎 | Thời gian đã chạy: ${elapsedSeconds}s`);
+        setTimeout(() => setView('menu'), 1000);
+      };
+
+      // Hack coins (mock failure)
+      const hackCoins = () => {
+        setView('hackCoins');
+        setHackStatus('Đang kết nối với server hack Vàng Free Fire...');
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+          progress += 1;
+          if (progress >= 30) {
+            clearInterval(progressInterval);
+            setHackStatus('Kết nối server thất bại. Vui lòng thử lại sau!');
+            setTimeout(() => setView('menu'), 3000);
+          }
+        }, 500);
+      };
+
+      // Render select ID view
+      const renderSelectId = () => {
+        const idList = Object.keys(userData);
+        return (
+          <div className="max-w-2xl mx-auto p-4">
+            <h1 className="text-2xl text-red-500 border-4 border-red-500 p-2 text-center">
+              HUNG-TOOL HACK FREE FIRE 2025
+            </h1>
+            {idList.length === 0 ? (
+              <div className="mt-4">
+                <p className="text-green-500">[{(new Date()).toLocaleTimeString()}] Chưa có ID nào được lưu. Vui lòng nhập ID mới.</p>
+                <input
+                  type="text"
+                  value={newId}
+                  onChange={(e) => setNewId(e.target.value)}
+                  placeholder="Nhập ID game Free Fire (8-11 số)"
+                  className="w-full p-2 mt-2 bg-gray-800 text-white rounded"
+                />
+                <button
+                  onClick={handleNewId}
+                  className="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                >
+                  Xác nhận
+                </button>
+              </div>
+            ) : (
+              <div className="mt-4">
+                <h2 className="text-green-500 border-t-2 border-b-2 border-green-500 py-2">
+                  Danh sách ID
+                </h2>
+                {idList.map((id, idx) => (
+                  <div
+                    key={id}
+                    className="flex justify-between p-2 hover:bg-gray-800 cursor-pointer"
+                    onClick={() => {
+                      setUserId(id);
+                      setView('menu');
+                    }}
+                  >
+                    <span className="text-yellow-500">{idx + 1}. ID: <span className="text-cyan-500">{id}</span></span>
+                    <span className="text-yellow-500">Tổng kim cương: {userData[id].total_diamonds} 💎</span>
+                  </div>
+                ))}
+                <div
+                  className="flex justify-between p-2 hover:bg-gray-800 cursor-pointer"
+                  onClick={() => setView('newId')}
+                >
+                  <span className="text-yellow-500">{idList.length + 1}. Thêm ID mới</span>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      };
+
+      // Render new ID input view
+      const renderNewId = () => (
+        <div className="max-w-2xl mx-auto p-4">
+          <h1 className="text-2xl text-red-500 border-4 border-red-500 p-2 text-center">
+            HUNG-TOOL HACK FREE FIRE 2025
+          </h1>
+          <div className="mt-4">
+            <p className="text-yellow-500">Nhập ID game Free Fire (8-11 số):</p>
+            <input
+              type="text"
+              value={newId}
+              onChange={(e) => setNewId(e.target.value)}
+              className="w-full p-2 mt-2 bg-gray-800 text-white rounded"
+            />
+            <button
+              onClick={handleNewId}
+              className="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            >
+              Xác nhận
+            </button>
+            <button
+              onClick={() => setView('selectId')}
+              className="mt-2 ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+            >
+              Quay lại
+            </button>
+          </div>
+        </div>
+      );
+
+      // Render main menu
+      const renderMenu = () => (
+        <div className="max-w-2xl mx-auto p-4">
+          <h1 className="text-2xl text-red-500 border-4 border-red-500 p-2 text-center">
+            HUNG-TOOL HACK FREE FIRE 2025
+          </h1>
+          <p className="text-red-500 mt-2">
+            Lưu ý: Đây là bản kết nối với server của mình.<br />
+            và đây cũng là bản test server nên kim cương<br />
+            hay là vàng sẽ về acc sau 24h
+          </p>
+          <p className="text-yellow-500 mt-2">
+            Người chơi: ID: <span className="text-cyan-500">{userId}</span> | Tổng nhận: <span className="text-yellow-500">{userData[userId]?.total_diamonds || 0} 💎</span> <span className="text-green-500">Phiên bản: V1.2</span>
+          </p>
+          <div className="border-t-2 border-b-2 border-green-500 mt-4 py-2">
+            <div
+              className="p-2 hover:bg-gray-800 cursor-pointer"
+              onClick={hackDiamonds}
+            >
+              <span className="text-yellow-500">1.</span> <span className="text-cyan-500">Hack kim cương <span className="text-green-500">[SERVER ON]</span></span>
+            </div>
+            <div
+              className="p-2 hover:bg-gray-800 cursor-pointer"
+              onClick={hackCoins}
+            >
+              <span className="text-yellow-500">2.</span> <span className="text-cyan-500">Hack vàng <span className="text-red-500">[SERVER OFF]</span></span>
+            </div>
+            <div
+              className="p-2 hover:bg-gray-800 cursor-pointer"
+              onClick={() => setView('selectId')}
+            >
+              <span className="text-yellow-500">3.</span> <span className="text-cyan-500">Thoát tool</span>
+            </div>
+          </div>
+        </div>
+      );
+
+      // Render hack diamonds view
+      const renderHackDiamonds = () => (
+        <div className="max-w-2xl mx-auto p-4">
+          <h1 className="text-2xl text-red-500 border-4 border-red-500 p-2 text-center">
+            HUNG-TOOL HACK FREE FIRE 2025
+          </h1>
+          <p className="text-yellow-500 mt-4">[{new Date().toLocaleTimeString()}] {hackStatus}</p>
+          {isHacking && (
+            <div className="mt-4">
+              <p className="text-green-500">[{countdown}] <span className="text-yellow-500">[{new Date().toLocaleTimeString()}]</span> Đang hack kim cương cho ID <span className="text-cyan-500">{userId}</span>...</p>
+              <button
+                onClick={stopHacking}
+                className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              >
+                Dừng
+              </button>
+            </div>
+          )}
+        </div>
+      );
+
+      // Render hack coins view
+      const renderHackCoins = () => (
+        <div className="max-w-2xl mx-auto p-4">
+          <h1 className="text-2xl text-red-500 border-4 border-red-500 p-2 text-center">
+            HUNG-TOOL HACK FREE FIRE 2025
+          </h1>
+          <p className="text-yellow-500 mt-4">[{new Date().toLocaleTimeString()}] {hackStatus}</p>
+        </div>
+      );
+
+      // Main render
+      return (
+        <div>
+          {view === 'selectId' && renderSelectId()}
+          {view === 'newId' && renderNewId()}
+          {view === 'menu' && renderMenu()}
+          {view === 'hackDiamonds' && renderHackDiamonds()}
+          {view === 'hackCoins' && renderHackCoins()}
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+  </html>
