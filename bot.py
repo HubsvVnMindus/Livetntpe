@@ -146,7 +146,7 @@ def handle_start(chat_id, user_info):
 • Chat ID này dùng để nhận thông báo riêng
 
 💬 <b>Hỗ trợ:</b> @htool88
-📞 <b>Zalo:</b> 0842010239"""
+📞 <b>Zalo:</b> 0398639736"""
 
     send_message(chat_id, message)
     save_user(chat_id, user_info)
@@ -236,7 +236,7 @@ def handle_info(chat_id, user_info):
 • Tự động kiểm tra key
 
 💬 <b>Liên hệ:</b> @htool88
-📞 <b>Zalo:</b> 0842010239"""
+📞 <b>Zalo:</b> 0398639736"""
 
     send_message(chat_id, message)
     save_user(chat_id, user_info)
@@ -247,14 +247,14 @@ def handle_contact(chat_id, user_info):
     message = """📞 <b>LIÊN HỆ ADMIN</b>
 
 ━━━━━━━━━━━━━━━━━━━━
-👤 <b>Admin:</b> Thành Công
-📞 <b>Zalo:</b> 0842010239
+👤 <b>Admin:</b> Trường Sơn
+📞 <b>Zalo:</b> 0398639736
 💬 <b>Telegram:</b> @htool88
-📱 <b>Nhóm Zalo:</b> https://zalo.me/g/fmyvre167
-🔗 <b>Kênh Telegram:</b> https://t.me/+PByWNy8hDxYzYTRl
+📱 <b>Nhóm Zalo:</b> https://zalo.me/g/xepsxzvrnbqthrnaerm3
+🔗 <b>Kênh Telegram:</b> có nịt
 ━━━━━━━━━━━━━━━━━━━━
 
-⏰ <b>Hỗ trợ:</b> 8:00 - 22:00 hàng ngày
+⏰ <b>Hỗ trợ:</b> 12:30 - 22:00 hàng ngày
 💡 <b>Mua key tool:</b> Liên hệ Zalo/Telegram"""
 
     send_message(chat_id, message)
