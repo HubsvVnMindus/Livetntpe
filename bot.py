@@ -444,5 +444,17 @@ def main():
             time.sleep(5)
 
 
+# ================== KHỞI ĐỘNG ==================
+
+def start_bot():
+    """Khởi động bot trong thread riêng"""
+    bot_thread = threading.Thread(target=main, daemon=True)
+    bot_thread.start()
+    print("🤖 Bot thread đã khởi động!")
+
+# Tự động chạy khi deploy lên Render
+start_bot()
+
 if __name__ == "__main__":
+    # Khi chạy local
     main()
